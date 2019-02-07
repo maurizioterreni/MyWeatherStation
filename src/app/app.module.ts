@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { httpLoaderFactory } from './factory/httpLoaderFactory';
+import { HttpLoaderFactory } from './factory/httpLoaderFactory';
 
 @NgModule({
   declarations: [
@@ -16,11 +16,11 @@ import { httpLoaderFactory } from './factory/httpLoaderFactory';
     AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot({
-       loader: {
+      loader: {
           provide: TranslateLoader,
-          useFactory: httpLoaderFactory,
+          useFactory: HttpLoaderFactory,
           deps: [HttpClient]
-       }
+      }
     }),
   ],
   providers: [],
