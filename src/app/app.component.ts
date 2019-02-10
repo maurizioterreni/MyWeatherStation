@@ -11,7 +11,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private translateService: TranslateService) {}
   ngOnInit() {
     window.dispatchEvent(new Event('resize'));
-    document.body.className = 'hold-transition skin-blue sidebar-mini';
+    document.body.className = 'hold-transition skin-blue fixed sidebar-mini';
     // this language will be used as a fallback when a translation isn't found in the current language
     this.translateService.setDefaultLang('it');
 
