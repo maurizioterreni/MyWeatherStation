@@ -2,6 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './layout/dashboard/dashboard.component';
 
+export interface Dropdown {
+  id: string;
+  icon?: string;
+  titleText?: string;
+}
+
+export const DROPDOWNS: Array<Dropdown> = [
+  {id: 'DASHBOARD', titleText: 'routing.dropdowns.dashboard.title', icon: 'fa-folder-open' },
+];
+
 const routes: Routes = [
   {
     path: '',
@@ -9,8 +19,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
+    path: 'dashboard', component: DashboardComponent, pathMatch: 'full',
+    data: {
+      id: 2, breadcrumbPath: [1, 2], titleText: 'routing.dashboard.title', headerText: 'routing.dashboard.header',
+      desc: 'routing.dashboard.desc', icon: 'fa-dashboard', nav: 'leftmenu'
+    }
   },
   {
     path: '**',
