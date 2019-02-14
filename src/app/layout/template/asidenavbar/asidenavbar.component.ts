@@ -31,18 +31,53 @@ export class AsidenavbarComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+    // filtro i soli elementi leftmenu
     this.routes = this.router.config.filter(r => {
       return r.data && r.data.nav && r.data.nav === 'leftmenu';
     });
+
+    this.sidebarElements = new Array<(Route|SidebarDropdown)>();
+
+    // aggiorno la lista delle sidebar ad ogni sottoscrizione dell'obs authorization
+    // costruisco un array di sidebarElements che sono Route o SidebarDropdown rispettando l'ordine nel routing
     this.sidebarElements = new Array<(Route|SidebarDropdown)>();
     const parents = new Set<string>();
     const routesAdded = new Set<number>(); // mi permette di tenere traccia delle routes (nelle dropdown e non) già aggiunte alla sidebar
     this.routes.forEach((route, i) => {
       const data = route.data,
       parent = data.parent;
-      routesAdded.add(data.id);
-      this.sidebarElements.push(route);
-      console.log(data);
+
+      // se la route ha un parent e la mappa dei parent non la contiene già
+      if (parent && !parents.has(parent)) {
+        parents.add(parent);
+        // costruisco l'oggetto elemento come tipologia SidebarDropDown
+        const element = new SidebarDropdown(DROPDOWNS.find((dropdown: Dropdown) => dropdown.id === parent));
+
+        // ricerco eventuali altre routes con lo stesso parent
+        this.routes.filter(r => r.data.parent === parent)
+        .forEach(r => {
+            element.routes.push(r);
+        });
+
+        // aggiungo l'oggetto sidebar solo se ha elementi figli
+        if (element.routes.length > 0) {
+          const firstRoute = element.routes[0];
+          // se ho una sola route ed è marcata preferNoDropDown allora non inserisco una dropdown bensì una route semplice
+          if (element.routes.length === 1 && firstRoute.data.preferNoDropDown) {
+            firstRoute.data.titleText = firstRoute.data.titleTextNotInDropdown;
+            firstRoute.data.desc = firstRoute.data.descTextNotInDropdown;
+            routesAdded.add(firstRoute.data.id);
+            this.sidebarElements.push(firstRoute);
+          } else {
+            element.routes.map( (r): number => r.data.id).forEach(routesAdded.add.bind(routesAdded));
+            this.sidebarElements.push(element);
+          }
+        }
+
+      } else if ( !parent && !routesAdded.has(data.id)) {
+        routesAdded.add(data.id);
+        this.sidebarElements.push(route);
+      }
     });
   }
 

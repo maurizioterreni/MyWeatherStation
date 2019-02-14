@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './layout/dashboard/dashboard.component';
+import { DashboardComponent } from './layout/component/dashboard/dashboard.component';
 
 export interface Dropdown {
   id: string;
@@ -21,8 +21,15 @@ const routes: Routes = [
   {
     path: 'dashboard', component: DashboardComponent, pathMatch: 'full',
     data: {
+      id: 1, breadcrumbPath: [1], titleText: 'routing.dashboard.title', headerText: 'routing.dashboard.header',
+      desc: 'routing.dashboard.desc', parent: 'DASHBOARD', icon: 'fa-dashboard', nav: 'leftmenu'
+    }
+  },
+  {
+    path: 'weatherstation-list', component: DashboardComponent, pathMatch: 'full',
+    data: {
       id: 2, breadcrumbPath: [1, 2], titleText: 'routing.dashboard.title', headerText: 'routing.dashboard.header',
-      desc: 'routing.dashboard.desc', icon: 'fa-dashboard', nav: 'leftmenu'
+      desc: 'routing.dashboard.desc', parent: 'DASHBOARD', icon: 'fa-dashboard', nav: 'leftmenu'
     }
   },
   {

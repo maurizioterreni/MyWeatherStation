@@ -6,15 +6,17 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from './factory/httpLoaderFactory';
-import { DashboardComponent } from './layout/dashboard/dashboard.component';
 import { TopnavbarComponent } from './layout/template/topnavbar/topnavbar.component';
 import { AsidenavbarComponent } from './layout/template/asidenavbar/asidenavbar.component';
 import { FooternavbarComponent } from './layout/template/footernavbar/footernavbar.component';
+import { DashboardComponent } from './layout/component/dashboard/dashboard.component';
+import { WeatherstationListComponent } from './layout/component/weatherstation-list/weatherstation-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
+    WeatherstationListComponent,
     TopnavbarComponent,
     AsidenavbarComponent,
     FooternavbarComponent,
