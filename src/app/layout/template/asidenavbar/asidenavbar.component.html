@@ -26,17 +26,34 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu tree" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
-      <ng-template ngFor let-s [ngForOf]="sidebarElements">
-        <li [ngClass]="active">
-          <a [routerLink]="[s.path]">
-            <i class="fa {{s.data.icon}} fa-fw"></i>
-            <span>{{ s.data.titleText | translate }}</span>
-          </a>
-        </li>
-        
-        
-        
-      </ng-template>
+        <ng-template ngFor let-s [ngForOf]="sidebarElements">
+            <li [ngClass]="{'active':isActive(s)}" *ngIf="!(s | instanceof: 'SidebarDropdown')">
+              <a [routerLink]="[s.path]">
+                <i class="fa {{s.data.icon}} fa-fw"></i>
+                <span>{{ s.data.titleText | translate }}</span>
+              </a>
+            </li>
+            
+            <li [ngClass]="{'active':isActive(s)}" class="treeview" *ngIf="s | instanceof: 'SidebarDropdown'">
+              <a href="#">
+                <i class="fa {{s.icon}} fa-fw"></i>
+                <span>{{s.titleText | translate}}</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <ng-template ngFor let-r [ngForOf]="s.routes">
+                  <li [ngClass]="{'active':isRouteActive(r)}">
+                    <a [routerLink]="[r.path]">
+                      <i class="fa fa-circle-o fa-fw"></i>
+                      <span>{{ r.data.titleText | translate }}</span>
+                    </a>
+                  </li>
+                </ng-template>
+              </ul>
+            </li>       
+        </ng-template>
     </ul>
   </section>
   <!-- /.sidebar -->

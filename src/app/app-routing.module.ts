@@ -9,7 +9,7 @@ export interface Dropdown {
 }
 
 export const DROPDOWNS: Array<Dropdown> = [
-  {id: 'DASHBOARD', titleText: 'routing.dropdowns.dashboard.title', icon: 'fa-folder-open' },
+  {id: 'DASHBOARD', titleText: 'routing.dropdowns.dashboard.title', icon: 'fa-dashboard' },
 ];
 
 const routes: Routes = [
@@ -22,14 +22,14 @@ const routes: Routes = [
     path: 'dashboard', component: DashboardComponent, pathMatch: 'full',
     data: {
       id: 1, breadcrumbPath: [1], titleText: 'routing.dashboard.title', headerText: 'routing.dashboard.header',
-      desc: 'routing.dashboard.desc', parent: 'DASHBOARD', icon: 'fa-dashboard', nav: 'leftmenu'
+      desc: 'routing.dashboard.desc', parent: 'DASHBOARD', icon: 'fa-dashboard'
     }
   },
   {
     path: 'weatherstation-list', component: DashboardComponent, pathMatch: 'full',
     data: {
       id: 2, breadcrumbPath: [1, 2], titleText: 'routing.dashboard.title', headerText: 'routing.dashboard.header',
-      desc: 'routing.dashboard.desc', parent: 'DASHBOARD', icon: 'fa-dashboard', nav: 'leftmenu'
+      desc: 'routing.dashboard.desc', parent: 'DASHBOARD', icon: 'fa-dashboard'
     }
   },
   {

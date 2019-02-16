@@ -11,6 +11,7 @@ import { AsidenavbarComponent } from './layout/template/asidenavbar/asidenavbar.
 import { FooternavbarComponent } from './layout/template/footernavbar/footernavbar.component';
 import { DashboardComponent } from './layout/component/dashboard/dashboard.component';
 import { WeatherstationListComponent } from './layout/component/weatherstation-list/weatherstation-list.component';
+import { InstanceofPipe } from './pipe/instanceof.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { WeatherstationListComponent } from './layout/component/weatherstation-l
     TopnavbarComponent,
     AsidenavbarComponent,
     FooternavbarComponent,
+    InstanceofPipe,
   ],
   imports: [
     BrowserModule,
