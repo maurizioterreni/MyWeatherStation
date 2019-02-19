@@ -1,6 +1,16 @@
 {
-    "APP" : {
-            "TITLE" : "ngx-translate demonstration",
-            "BODY" : "It works very well!"
+    "time": "Time",
+    "routing": {
+        "dropdowns": {
+            "dashboard": {
+                "title": "Dashboard"
             }
+        },
+        "dashboard": {
+            "title": "Dashboard"
+        }
+    },
+    "dashboard":{
+        "view-on-map": "View On Map"
+    }
 }
